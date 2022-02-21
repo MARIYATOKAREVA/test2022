@@ -6,8 +6,10 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import pages.CalculatorPage1;
 import pages.SearchPage;
 
 import javax.swing.*;
@@ -18,6 +20,7 @@ public class googleTests {
 
     private static WebDriver driver;
     private static SearchPage searchPage;
+    private static CalculatorPage1 calculatorPage1;
 
     @BeforeAll
     public static void  init() {
@@ -26,6 +29,7 @@ public class googleTests {
         options.addArguments("start-maximized");
         driver = new ChromeDriver(options);
         searchPage = new SearchPage(driver);
+        calculatorPage1 = new CalculatorPage1(driver);
     }
 
     @Test
@@ -34,6 +38,15 @@ public class googleTests {
         searchPage.search("калькулятор");
         searchPage.results.size();
     }
+
+    @Test
+    public void test2() {
+        driver.get("http://google.com");
+        searchPage.search("калькулятор");
+        calculatorPage1.getTask();
+        calculatorPage1.getFinal();
+    }
+
 
     @AfterAll
     public static void teardown() {
